@@ -3,6 +3,7 @@ import './pokemon.scss'
 import pokeball from '/pokeball_favicon.webp'
 
 let currentArray = [];
+let initialArray = [];
 let fullArray = [];
 
 async function fetchPokemonData() {
@@ -13,8 +14,8 @@ async function fetchPokemonData() {
     }
     const data = await response.json();
     fullArray = data;
-    let slicedArray = data.slice(0, 25);
-    fillSlider(slicedArray);           // limitando a 25 elementos por rendimiento
+    initialArray = data.slice(0, 25); // Solo los primeros 25 para el renderizado inicial
+    fillSlider(data)
   } catch (error) {
     console.error('Error fetching JSON:', error);
   }
@@ -112,7 +113,7 @@ function searchBar() {
 
     if (term.length === 0) {
       // Restaurar vista original cuando se borra el texto
-      fillSlider(currentArray);
+      fillSlider(initialArray);
       return;
     }
 
