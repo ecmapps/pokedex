@@ -1,0 +1,180 @@
+// pokemon-gba-card.scss
+
+// Paleta aproximada GBA Pokémon (Ruby/Sapphire/Emerald style)
+$gba-bg: #e0e8f0;                // fondo claro azulado-gris
+$gba-border-dark: #000814;       // borde exterior muy oscuro
+$gba-border-light: #a0b8d0;      // borde interior claro
+$gba-shadow: rgba(0, 0, 0, 0.4);
+$gba-text: #102030;
+$gba-text-light: #304050;
+
+$titulo-color: #FFCB03;
+$titulo-stroke: #3D589F;
+$value-background: #D3DDD6;
+$hp-green: #78c850;
+$hp-yellow: #f8d030;
+$hp-red: #f03030;
+$hp-border: #181818;
+$hp-bg: #f8f8f8;
+
+@font-face {
+    font-family: 'gba-pokemon';
+    src:
+      url('/fonts/Pokemon Classic.ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'titulo-pokemon';
+    src:
+      url('/fonts/Pokemon Solid.ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  .contenedor-base{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .titulo{
+    font-family: 'titulo-pokemon', Courier, monospace;
+    color: $titulo-color;
+    text-shadow: $gba-shadow 2px 2px 0, $titulo-stroke -2px -2px 0, $gba-shadow -2px 2px 0, $titulo-stroke 2px -2px 0;
+    --webkit-text-stroke: 10px $titulo-stroke;
+  }
+  .base-filter{
+   display: flex;
+   flex-direction: row;
+    gap: 8px;
+    .search-button {
+      height: 30px;
+      width: auto;
+      padding: 2px;
+      margin: 0;
+      border: 2px solid $gba-border-dark;
+      border-radius: 8px;
+      img{
+        height: 100%;
+        width: auto;
+      }
+    } 
+  }
+.pokemon-card {
+  min-width: 350px;
+  min-height: 200px;
+  
+  background: $gba-bg;
+  border: 4px solid $gba-border-dark;
+  border-radius: 8px; 
+  
+  box-shadow: 
+    inset 0 0 0 4px $gba-border-light,
+    inset 0 0 0 6px $gba-border-dark,
+    0 6px 12px $gba-shadow;
+  
+  font-family: 'gba-pokemon', Courier, monospace; // simula fuente pixelada
+  font-size: x-small;
+  color: $gba-text;
+  line-height: 1.4;
+  overflow: hidden;
+  position: relative;
+  
+  // Efecto de pantalla GBA (muy sutil)
+  filter: contrast(1.15) brightness(0.97);
+  
+  .card-header {
+    background: linear-gradient(to bottom, #88a0c8, #6878a0);
+    border-bottom: 4px solid $gba-border-dark;
+    min-height: 22px;
+    padding: 6px 12px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px 0 #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    // Aqui van los tipos de pokemon (Si los hay y son imagenes que van a la derecha))
+      .types {
+        display: flex;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        gap: 4px;
+        
+        .type-icon {
+          width: auto;
+          height: 20px;
+          background-size: cover;
+          border: 1px solid #304860;
+          border-radius: 12px;
+        }
+      }
+  }
+  
+  .pokemon-name {
+    font-size: 1.4em;
+    margin: 0;
+  }
+  
+  .content {
+    padding: 12px;
+    display: grid;
+    grid-template-columns: 1fr 130px;
+    gap: 12px;
+  }
+  
+  .stats {
+    display: flex;
+    flex-direction: column;
+    //align-items: center;
+    .base-col {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      background-color: #2A5E75;
+      border-radius: 12px;
+      margin-bottom: 4px;
+      .label {
+        width: 50%;
+        text-align: left;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        font-weight: bold;
+        margin: 4px 4px 4px 8px;
+      }
+      .value {
+        display: flex;
+        align-items: center;
+        width: 50%;
+        border-radius: 12px;
+        background-color: $value-background;
+        text-align: left;
+        padding: 0 8px;
+        margin: 2px 2px;
+      }
+    }
+  }
+
+  .sprite-placeholder {
+    width: 120px;
+    height: 120px;
+    background: #d0d8e0;
+    border: 3px solid #304860;
+    border-radius: 6px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8em;
+    color: #506880;
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.4);
+  }
+}
